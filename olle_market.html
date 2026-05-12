@@ -3,199 +3,187 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>서귀포 매일올레시장 맛집 지도</title>
+  <title>전세계가 사랑한 올레시장 맛집 순위</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-      background: #f5f0eb;
-      color: #2d2d2d;
+      background: #f7f7f7;
+      color: #1a1a1a;
       min-height: 100vh;
+      max-width: 480px;
+      margin: 0 auto;
     }
+
     header {
-      background: linear-gradient(135deg, #e85d26 0%, #c94b1a 100%);
-      color: white;
-      text-align: center;
-      padding: 32px 20px 24px;
-    }
-    header .subtitle { font-size: 13px; opacity: 0.85; margin-bottom: 8px; letter-spacing: 1px; }
-    header h1 { font-size: 24px; font-weight: 800; line-height: 1.3; }
-    header p { font-size: 13px; margin-top: 8px; opacity: 0.8; }
-
-    /* 시장 안내 카드 */
-    .market-card {
-      margin: 20px 16px 0;
-      background: linear-gradient(135deg, #1a1a2e, #16213e);
-      border-radius: 16px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .market-card h2 { font-size: 20px; font-weight: 800; color: #fff; }
-    .market-card .desc { font-size: 13px; color: #aaa; line-height: 1.6; }
-    .btn-dark {
-      display: block;
-      text-align: center;
       background: #fff;
-      color: #1a1a2e;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 12px;
-      border-radius: 10px;
-      margin-top: 4px;
+      padding: 28px 20px 16px;
+      border-bottom: 1px solid #eee;
     }
-
-    /* 제육이다 히어로 카드 */
-    .hero-card {
-      margin: 12px 16px 0;
-      background: linear-gradient(135deg, #fff3ee, #ffe8dc);
-      border: 2px solid #e85d26;
-      border-radius: 16px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .hero-badge {
-      display: inline-block;
-      background: #e85d26;
-      color: white;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 20px;
-      width: fit-content;
-    }
-    .hero-card h2 { font-size: 22px; font-weight: 800; color: #c94b1a; }
-    .hero-card .desc { font-size: 13px; color: #555; line-height: 1.6; }
-    .hero-card .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag {
-      background: #fff;
-      border: 1px solid #e85d26;
-      color: #e85d26;
-      font-size: 11px;
-      padding: 3px 9px;
-      border-radius: 20px;
-    }
-    .btn {
-      display: block;
-      text-align: center;
-      background: #e85d26;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 12px;
-      border-radius: 10px;
-      margin-top: 4px;
-    }
-
-    /* 카테고리 섹션 */
-    .section { margin: 20px 16px 0; }
-    .section-title {
-      font-size: 13px;
-      font-weight: 800;
-      color: #888;
-      letter-spacing: 0.5px;
-      margin-bottom: 10px;
-      padding-left: 4px;
-    }
-    .store-list { display: flex; flex-direction: column; gap: 10px; }
-    .store-card {
-      background: white;
-      border-radius: 12px;
-      padding: 16px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-    }
-    .store-num {
-      font-size: 11px;
-      font-weight: 800;
-      color: #bbb;
-      min-width: 20px;
-      margin-top: 2px;
-    }
-    .store-emoji { font-size: 26px; line-height: 1; flex-shrink: 0; margin-top: 2px; }
-    .store-info { flex: 1; }
-    .store-name { font-size: 15px; font-weight: 700; color: #1a1a1a; }
-    .store-detail { font-size: 12px; color: #888; margin-top: 3px; line-height: 1.5; }
-    .store-link {
-      display: inline-block;
-      margin-top: 8px;
+    header .location {
       font-size: 12px;
-      color: #e85d26;
-      text-decoration: none;
-      font-weight: 600;
-      border: 1px solid #e85d26;
-      padding: 4px 10px;
-      border-radius: 20px;
+      color: #999;
+      margin-bottom: 4px;
     }
-    .badge-hot {
-      display: inline-block;
-      background: #ff4757;
-      color: white;
+    header h1 {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.3;
+      color: #111;
+    }
+    header h1 span { color: #e85d26; }
+    header .updated {
+      font-size: 11px;
+      color: #bbb;
+      margin-top: 8px;
+    }
+
+    /* 탭 */
+    .tabs {
+      background: #fff;
+      display: flex;
+      padding: 0 16px;
+      border-bottom: 1px solid #eee;
+      gap: 20px;
+    }
+    .tab {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 12px 0;
+      color: #bbb;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+    }
+    .tab.active {
+      color: #e85d26;
+      border-bottom: 2px solid #e85d26;
+    }
+
+    /* 순위 리스트 */
+    .rank-list { background: #fff; }
+
+    .rank-item {
+      display: flex;
+      align-items: center;
+      padding: 14px 20px;
+      border-bottom: 1px solid #f2f2f2;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .rank-item:active { background: #fafafa; }
+
+    /* 1,2,3위 강조 */
+    .rank-item.top1 { background: #fff9f6; }
+    .rank-item.top2 { background: #fdfcfb; }
+    .rank-item.top3 { background: #fdfcfb; }
+
+    .rank-num {
+      font-size: 16px;
+      font-weight: 900;
+      min-width: 28px;
+      text-align: center;
+      color: #ccc;
+    }
+    .rank-num.gold { color: #e85d26; font-size: 18px; }
+    .rank-num.silver { color: #888; font-size: 17px; }
+    .rank-num.bronze { color: #b07d3a; font-size: 17px; }
+
+    .rank-emoji {
+      font-size: 30px;
+      min-width: 40px;
+      text-align: center;
+    }
+
+    .rank-info { flex: 1; }
+    .rank-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #111;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .rank-desc {
+      font-size: 12px;
+      color: #999;
+      margin-top: 3px;
+    }
+
+    .rank-badge {
       font-size: 10px;
       font-weight: 700;
       padding: 2px 7px;
       border-radius: 20px;
-      margin-left: 6px;
-      vertical-align: middle;
+      white-space: nowrap;
     }
-    footer {
-      text-align: center;
-      padding: 32px 16px;
+    .badge-hot { background: #fff0ec; color: #e85d26; }
+    .badge-tv  { background: #f0f4ff; color: #4466ee; }
+    .badge-new { background: #f0fff4; color: #22aa55; }
+
+    .rank-change {
       font-size: 12px;
-      color: #aaa;
-      margin-top: 10px;
+      font-weight: 700;
+      min-width: 32px;
+      text-align: right;
     }
-    footer strong { color: #e85d26; }
+    .up   { color: #22aa55; }
+    .down { color: #e84040; }
+    .same { color: #ccc; }
+    .new-entry { color: #4466ee; font-size: 10px; }
+
+    /* 제육이다 특별 카드 */
+    .hero-row {
+      margin: 12px 16px;
+      background: linear-gradient(135deg, #e85d26, #c94b1a);
+      border-radius: 14px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .hero-row .rank-num { color: rgba(255,255,255,0.6); font-size: 18px; }
+    .hero-row .rank-name { color: #fff; font-size: 16px; }
+    .hero-row .rank-desc { color: rgba(255,255,255,0.7); }
+    .hero-row .rank-change { color: rgba(255,255,255,0.8); }
 
     /* 새활용 배너 */
-    .eco-banner {
-      margin: 20px 16px 0;
+    .eco-section {
+      margin: 16px;
       background: linear-gradient(135deg, #1b4332, #2d6a4f);
-      border-radius: 16px;
-      padding: 20px;
+      border-radius: 14px;
+      padding: 18px;
       color: white;
     }
-    .eco-banner .eco-label {
+    .eco-label {
       display: inline-block;
       background: #52b788;
       color: white;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
-      padding: 3px 10px;
+      padding: 3px 9px;
       border-radius: 20px;
       margin-bottom: 10px;
-      letter-spacing: 0.5px;
     }
-    .eco-banner h2 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
-    .eco-banner .eco-sub { font-size: 12px; opacity: 0.8; margin-bottom: 14px; line-height: 1.5; }
+    .eco-title { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+    .eco-sub { font-size: 11px; opacity: 0.75; margin-bottom: 14px; line-height: 1.5; }
     .eco-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .eco-stat {
       background: rgba(255,255,255,0.1);
       border-radius: 10px;
-      padding: 10px 6px;
+      padding: 10px 4px;
       text-align: center;
     }
-    .eco-stat .icon { font-size: 22px; display: block; margin-bottom: 4px; }
-    .eco-stat .val { font-size: 14px; font-weight: 800; display: block; }
-    .eco-stat .lbl { font-size: 10px; opacity: 0.75; display: block; margin-top: 2px; line-height: 1.3; }
-    .eco-note {
-      font-size: 11px;
-      opacity: 0.65;
-      margin-bottom: 12px;
-      line-height: 1.5;
-    }
+    .eco-stat .icon { font-size: 20px; display: block; margin-bottom: 4px; }
+    .eco-stat .val  { font-size: 13px; font-weight: 800; display: block; }
+    .eco-stat .lbl  { font-size: 10px; opacity: 0.7; display: block; margin-top: 2px; line-height: 1.3; }
+    .eco-note { font-size: 10px; opacity: 0.55; margin-bottom: 12px; line-height: 1.5; }
     .btn-green {
       display: block;
       text-align: center;
@@ -204,267 +192,274 @@
       text-decoration: none;
       font-size: 13px;
       font-weight: 700;
-      padding: 11px;
+      padding: 10px;
       border-radius: 10px;
+    }
+
+    /* 시장 안내 */
+    .market-info {
+      margin: 16px;
+      background: #fff;
+      border-radius: 14px;
+      padding: 16px 18px;
+      border: 1px solid #eee;
+    }
+    .market-info .mi-title { font-size: 14px; font-weight: 800; margin-bottom: 8px; color: #333; }
+    .market-info .mi-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+    .btn-map {
+      display: block;
+      text-align: center;
+      background: #f5f5f5;
+      color: #333;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 11px;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="subtitle">📍 제주 서귀포</div>
-  <h1>매일올레시장<br>맛집 &amp; 매장 안내</h1>
-  <p>QR코드로 접속하셨나요? 둘러보고 방문하세요 🙌</p>
+  <div class="location">📍 제주 서귀포</div>
+  <h1>전세계가 사랑한<br><span>올레시장</span> 맛집 순위</h1>
+  <div class="updated">2026년 5월 기준 · 방문객 인기도 순</div>
 </header>
 
-<!-- 1. 시장 안내 -->
-<div class="market-card">
-  <h2>🏪 서귀포 매일올레시장</h2>
-  <p class="desc">서귀포시 최대 전통시장 · 365일 운영<br>
-  제주특별자치도 서귀포시 중앙로62번길 18<br>
-  운영시간 08:00 — 21:00 (매장별 상이)</p>
-  <a href="https://www.google.com/maps/search/?api=1&query=서귀포+매일올레시장" target="_blank" class="btn-dark">🗺️ 시장 위치 보기</a>
+<div class="tabs">
+  <div class="tab active">전체</div>
+  <div class="tab">먹거리</div>
+  <div class="tab">해산물</div>
+  <div class="tab">특산품</div>
 </div>
 
-<!-- 2. 제육이다 히어로 -->
-<div class="hero-card">
-  <span class="hero-badge">⭐ 대표 맛집</span>
-  <h2>🔥 제육이다</h2>
-  <p class="desc">직화로 구워내는 제주산 돼지고기 제육볶음 전문점.<br>
-  시장 골목 대표 맛집으로 현지인도 즐겨 찾는 곳.</p>
-  <div class="tags">
-    <span class="tag">직화 제육볶음</span>
-    <span class="tag">제주산 돼지고기</span>
-    <span class="tag">포장 가능</span>
-  </div>
-  <a href="https://www.google.com/maps/search/?api=1&query=제육이다+제주특별자치도+서귀포시+중앙로62번길+18" target="_blank" class="btn">🗺️ 구글 지도에서 보기</a>
-</div>
+<div class="rank-list">
 
-<!-- 떡 / 간식 -->
-<div class="section">
-  <div class="section-title">🍡 떡 · 간식 · 디저트</div>
-  <div class="store-list">
-
-    <div class="store-card">
-      <div class="store-num">03</div>
-      <div class="store-emoji">🍡</div>
-      <div class="store-info">
-        <div class="store-name">할머니떡집 <span class="badge-hot">VJ특공대</span></div>
-        <div class="store-detail">감귤모찌 · 오메기떡 원조 · 시장 4대 명물<br>당일 직접 만든 수제 떡 · 선물 포장 가능</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=할머니떡집+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <!-- 1위: 제육이다 (히어로) -->
+  <a href="https://www.google.com/maps/search/?api=1&query=제육이다+제주특별자치도+서귀포시+중앙로62번길+18" target="_blank" class="hero-row">
+    <div class="rank-num gold">1</div>
+    <div class="rank-emoji">🔥</div>
+    <div class="rank-info">
+      <div class="rank-name" style="color:#fff;">제육이다</div>
+      <div class="rank-desc">직화 제육볶음 · 시장 대표 맛집</div>
     </div>
+    <div class="rank-change" style="color:rgba(255,255,255,0.7);">지도 →</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">15</div>
-      <div class="store-emoji">🍊</div>
-      <div class="store-info">
-        <div class="store-name">한라봉 아이스크림</div>
-        <div class="store-detail">제주 한라봉 · 레드향 · 애플망고 생과일 아이스크림<br>시장 걸으며 먹는 필수 간식</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=한라봉아이스크림+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <!-- 2위 ~ -->
+  <a href="https://www.google.com/maps/search/?api=1&query=할머니떡집+서귀포+올레시장" target="_blank" class="rank-item top2">
+    <div class="rank-num silver">2</div>
+    <div class="rank-emoji">🍡</div>
+    <div class="rank-info">
+      <div class="rank-name">할머니떡집 <span class="rank-badge badge-tv">VJ특공대</span></div>
+      <div class="rank-desc">감귤모찌 · 오메기떡 원조</div>
     </div>
+    <div class="rank-change up">↑ 2</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">17</div>
-      <div class="store-emoji">🥐</div>
-      <div class="store-info">
-        <div class="store-name">제성제과</div>
-        <div class="store-detail">제주 로컬 베이커리 · 시장 내 빵집<br>현지인 단골 간식 코너</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=제성제과+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=마농치킨+중앙통닭+서귀포+올레시장" target="_blank" class="rank-item top3">
+    <div class="rank-num bronze">3</div>
+    <div class="rank-emoji">🍗</div>
+    <div class="rank-info">
+      <div class="rank-name">마농치킨 <span class="rank-badge badge-tv">수요미식회</span></div>
+      <div class="rank-desc">마늘 후라이드 단일 메뉴</div>
     </div>
+    <div class="rank-change same">—</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">16</div>
-      <div class="store-emoji">🥤</div>
-      <div class="store-info">
-        <div class="store-name">제주 과일주스</div>
-        <div class="store-detail">한라봉 · 레드향 · 딸기 · 용과 100% 생착즙<br>무첨가 제주산 과일만 사용</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=제주과일주스+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=꽁치김밥+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">4</div>
+    <div class="rank-emoji">🍱</div>
+    <div class="rank-info">
+      <div class="rank-name">꽁치김밥 <span class="rank-badge badge-hot">4대명물</span></div>
+      <div class="rank-desc">꽁치 한 마리 통째로 · 시장 상징</div>
     </div>
+    <div class="rank-change up">↑ 1</div>
+  </a>
 
-  </div>
-</div>
-
-<!-- 육류 / 치킨 -->
-<div class="section">
-  <div class="section-title">🥩 육류 · 치킨 · 꼬치</div>
-  <div class="store-list">
-
-    <div class="store-card">
-      <div class="store-num">04</div>
-      <div class="store-emoji">🍗</div>
-      <div class="store-info">
-        <div class="store-name">마농치킨 (중앙통닭) <span class="badge-hot">수요미식회</span></div>
-        <div class="store-detail">마농(마늘) 후라이드 단일 메뉴 · 뼈째 칼 절단 튀김<br>📞 064-733-3521 · 12:00~21:00</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=마농치킨+중앙통닭+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=짱구분식+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">5</div>
+    <div class="rank-emoji">🍢</div>
+    <div class="rank-info">
+      <div class="rank-name">짱구분식 <span class="rank-badge badge-hot">4대명물</span></div>
+      <div class="rank-desc">20년 전통 제주 모닥치기</div>
     </div>
+    <div class="rank-change same">—</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">08</div>
-      <div class="store-emoji">🍖</div>
-      <div class="store-info">
-        <div class="store-name">흑돼지꼬치</div>
-        <div class="store-detail">제주 흑돼지 꼬치 · 순한맛~아주죽을맛 선택<br>가츠오부시 토핑 · 줄 서는 시장 명물</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=흑돼지꼬치+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=우정회센터+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">6</div>
+    <div class="rank-emoji">🐟</div>
+    <div class="rank-info">
+      <div class="rank-name">우정회센터</div>
+      <div class="rank-desc">꽁치김밥 원조 · 고등어회 · 딱새우</div>
     </div>
+    <div class="rank-change down">↓ 1</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">09</div>
-      <div class="store-emoji">🥩</div>
-      <div class="store-info">
-        <div class="store-name">뽈살집</div>
-        <div class="store-detail">흑돼지 특수부위 6종 모듬 전문<br>한 마리당 200g 이하만 나오는 희귀 부위</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=뽈살집+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=흑돼지꼬치+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">7</div>
+    <div class="rank-emoji">🍖</div>
+    <div class="rank-info">
+      <div class="rank-name">흑돼지꼬치</div>
+      <div class="rank-desc">줄 서는 명물 · 순한맛~아주죽을맛</div>
     </div>
+    <div class="rank-change up">↑ 3</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">20</div>
-      <div class="store-emoji">🌯</div>
-      <div class="store-info">
-        <div class="store-name">제주흑돼지김치말이</div>
-        <div class="store-detail">흑돼지 + 제주 김치 쌈 스타일<br>시장 걸으며 즐기는 간편 먹거리</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=흑돼지김치말이+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=뽈살집+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">8</div>
+    <div class="rank-emoji">🥩</div>
+    <div class="rank-info">
+      <div class="rank-name">뽈살집</div>
+      <div class="rank-desc">흑돼지 특수부위 6종 모듬</div>
     </div>
+    <div class="rank-change up">↑ 1</div>
+  </a>
 
-  </div>
-</div>
-
-<!-- 분식 -->
-<div class="section">
-  <div class="section-title">🍢 분식 · 김밥 · 모닥치기</div>
-  <div class="store-list">
-
-    <div class="store-card">
-      <div class="store-num">05</div>
-      <div class="store-emoji">🍱</div>
-      <div class="store-info">
-        <div class="store-name">꽁치김밥 <span class="badge-hot">4대명물</span></div>
-        <div class="store-detail">꽁치 한 마리 통째로 넣은 시장 명물 김밥<br>우정회센터에서 시작된 시장 대표 먹거리</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=꽁치김밥+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=오가네전복설렁탕+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">9</div>
+    <div class="rank-emoji">🍲</div>
+    <div class="rank-info">
+      <div class="rank-name">오가네전복설렁탕</div>
+      <div class="rank-desc">전복냉면 · 삼색만두 설렁탕</div>
     </div>
+    <div class="rank-change same">—</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">06</div>
-      <div class="store-emoji">🍢</div>
-      <div class="store-info">
-        <div class="store-name">짱구분식 <span class="badge-hot">4대명물</span></div>
-        <div class="store-detail">20년 전통 제주 모닥치기 · 순대·떡볶이·튀김·김밥 한 접시<br>📍 서귀포시 중동로48번길 3</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=짱구분식+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=큰갯물횟집+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">10</div>
+    <div class="rank-emoji">🐡</div>
+    <div class="rank-info">
+      <div class="rank-name">큰갯물횟집</div>
+      <div class="rank-desc">활어 · 한치회 · 갈치회 · 매운탕</div>
     </div>
+    <div class="rank-change down">↓ 2</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">18</div>
-      <div class="store-emoji">🥢</div>
-      <div class="store-info">
-        <div class="store-name">새로나분식</div>
-        <div class="store-detail">모닥치기 · 오뎅 · 꽈배기<br>📍 서귀포시 서귀동 273-5</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=새로나분식+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=바다수산+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">11</div>
+    <div class="rank-emoji">🐠</div>
+    <div class="rank-info">
+      <div class="rank-name">바다수산</div>
+      <div class="rank-desc">고등어회 · 옥돔 · 갈치</div>
     </div>
+    <div class="rank-change same">—</div>
+  </a>
 
-  </div>
-</div>
-
-<!-- 해산물 -->
-<div class="section">
-  <div class="section-title">🌊 해산물 · 횟집</div>
-  <div class="store-list">
-
-    <div class="store-card">
-      <div class="store-num">07</div>
-      <div class="store-emoji">🐟</div>
-      <div class="store-info">
-        <div class="store-name">우정회센터</div>
-        <div class="store-detail">꽁치김밥 원조 · 고등어회 · 딱새우 · 한치<br>제주 근해 당일 직송 신선 회</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=우정회센터+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=88버거+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">12</div>
+    <div class="rank-emoji">🍔</div>
+    <div class="rank-info">
+      <div class="rank-name">88버거</div>
+      <div class="rank-desc">제주 흑돼지 수제버거</div>
     </div>
+    <div class="rank-change up">↑ 2</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">11</div>
-      <div class="store-emoji">🐡</div>
-      <div class="store-info">
-        <div class="store-name">큰갯물횟집</div>
-        <div class="store-detail">활어 · 한치회 · 고등어회 · 갈치회 · 매운탕<br>고품질 프리미엄 횟집</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=큰갯물횟집+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=기흥어물+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">13</div>
+    <div class="rank-emoji">🐙</div>
+    <div class="rank-info">
+      <div class="rank-name">기흥어물</div>
+      <div class="rank-desc">수산물 · 건어물 · 젓갈 전문</div>
     </div>
+    <div class="rank-change same">—</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">12</div>
-      <div class="store-emoji">🐠</div>
-      <div class="store-info">
-        <div class="store-name">바다수산</div>
-        <div class="store-detail">고등어회 · 옥돔 · 갈치 전문<br>현지인 단골 시장 횟집</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=바다수산+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=한라봉아이스크림+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">14</div>
+    <div class="rank-emoji">🍊</div>
+    <div class="rank-info">
+      <div class="rank-name">한라봉 아이스크림</div>
+      <div class="rank-desc">제주 생과일 아이스크림 · 걸으며 먹는 필수 간식</div>
     </div>
+    <div class="rank-change up">↑ 1</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">14</div>
-      <div class="store-emoji">🐙</div>
-      <div class="store-info">
-        <div class="store-name">기흥어물</div>
-        <div class="store-detail">제주 수산물 전문 · 건어물 · 젓갈<br>선물용 수산가공품 판매</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=기흥어물+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=제주과일주스+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">15</div>
+    <div class="rank-emoji">🥤</div>
+    <div class="rank-info">
+      <div class="rank-name">제주 과일주스</div>
+      <div class="rank-desc">한라봉 · 레드향 · 딸기 100% 생착즙</div>
     </div>
+    <div class="rank-change same">—</div>
+  </a>
 
-  </div>
-</div>
-
-<!-- 식당 -->
-<div class="section">
-  <div class="section-title">🍽️ 식당 · 한식</div>
-  <div class="store-list">
-
-    <div class="store-card">
-      <div class="store-num">10</div>
-      <div class="store-emoji">🍲</div>
-      <div class="store-info">
-        <div class="store-name">오가네전복설렁탕</div>
-        <div class="store-detail">전복 냉면 · 삼색만두 설렁탕<br>올레시장 대표 한식 맛집</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=오가네전복설렁탕+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=제성제과+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">16</div>
+    <div class="rank-emoji">🥐</div>
+    <div class="rank-info">
+      <div class="rank-name">제성제과</div>
+      <div class="rank-desc">제주 로컬 베이커리 · 현지인 단골</div>
     </div>
+    <div class="rank-change down">↓ 1</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">13</div>
-      <div class="store-emoji">🍔</div>
-      <div class="store-info">
-        <div class="store-name">88버거</div>
-        <div class="store-detail">제주 흑돼지 수제버거 · 10:00~21:00 (목 휴무)<br>📍 서귀포시 동문로 63</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=88버거+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=새로나분식+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">17</div>
+    <div class="rank-emoji">🥢</div>
+    <div class="rank-info">
+      <div class="rank-name">새로나분식</div>
+      <div class="rank-desc">모닥치기 · 오뎅 · 꽈배기</div>
     </div>
+    <div class="rank-change same">—</div>
+  </a>
 
-    <div class="store-card">
-      <div class="store-num">19</div>
-      <div class="store-emoji">😋</div>
-      <div class="store-info">
-        <div class="store-name">랍다즐겁다</div>
-        <div class="store-detail">올레시장 내 현지인 추천 맛집<br>제주 로컬 식당</div>
-        <a href="https://www.google.com/maps/search/?api=1&query=랍다즐겁다+서귀포+올레시장" target="_blank" class="store-link">구글 지도 보기</a>
-      </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=랍다즐겁다+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">18</div>
+    <div class="rank-emoji">😋</div>
+    <div class="rank-info">
+      <div class="rank-name">랍다즐겁다</div>
+      <div class="rank-desc">현지인 추천 · 제주 로컬 식당</div>
     </div>
+    <div class="rank-change up">↑ 1</div>
+  </a>
 
-  </div>
+  <a href="https://www.google.com/maps/search/?api=1&query=흑돼지김치말이+서귀포+올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">19</div>
+    <div class="rank-emoji">🌯</div>
+    <div class="rank-info">
+      <div class="rank-name">제주흑돼지김치말이</div>
+      <div class="rank-desc">흑돼지 + 제주 김치 쌈 · 시장 간편 먹거리</div>
+    </div>
+    <div class="rank-change new-entry">NEW</div>
+  </a>
+
+  <a href="https://www.google.com/maps/search/?api=1&query=서귀포+매일올레시장" target="_blank" class="rank-item">
+    <div class="rank-num">20</div>
+    <div class="rank-emoji">🏪</div>
+    <div class="rank-info">
+      <div class="rank-name">서귀포 매일올레시장</div>
+      <div class="rank-desc">710m 아케이드 · 365일 운영</div>
+    </div>
+    <div class="rank-change same">—</div>
+  </a>
+
 </div>
 
 <!-- 새활용 배너 -->
-<div class="eco-banner">
+<div class="eco-section">
   <span class="eco-label">♻️ 제로제주 (플라스틱없는 제주만들기)</span>
-  <h2>상생 보냉 장바구니</h2>
-  <p class="eco-sub">버려지는 폐플라스틱을 100% 재생원단(플라텍스)으로 만든<br>제주형 친환경 업사이클링 제품</p>
+  <div class="eco-title">상생 보냉 장바구니</div>
+  <div class="eco-sub">버려지는 폐플라스틱을 100% 재생원단(플라텍스)으로 만든 제주형 친환경 업사이클링 제품</div>
   <div class="eco-stats">
     <div class="eco-stat">
       <span class="icon">🌿</span>
@@ -483,14 +478,21 @@
     </div>
   </div>
   <p class="eco-note">※ 탄소 저감 60% 기준: 일반 석유계 신소재 대비 / 소나무 1그루 연간 탄소흡수량 5.9kg (국립산림과학원, 2021) / 수치는 추정치이며 KCL 공인시험 진행 중</p>
-  <a href="https://www.google.com/maps/search/?api=1&query=제육이다+서귀포+서귀동291-11" target="_blank" class="btn-green">🛍️ 제육이다에서 만나보기</a>
+  <a href="https://www.google.com/maps/search/?api=1&query=제육이다+제주특별자치도+서귀포시+중앙로62번길+18" target="_blank" class="btn-green">🛍️ 제육이다에서 만나보기</a>
+</div>
+
+<!-- 시장 안내 -->
+<div class="market-info">
+  <div class="mi-title">🏪 서귀포 매일올레시장 안내</div>
+  <div class="mi-row">📍 제주특별자치도 서귀포시 중앙로62번길 18</div>
+  <div class="mi-row">🕐 매일 08:00 — 21:00 (매장별 상이)</div>
+  <div class="mi-row">🚗 공영주차장 완비 · 365일 운영</div>
+  <a href="https://www.google.com/maps/search/?api=1&query=서귀포+매일올레시장" target="_blank" class="btn-map">🗺️ 시장 위치 보기</a>
 </div>
 
 <footer>
-  <p><strong>서귀포 매일올레시장</strong></p>
-  <p>제주특별자치도 서귀포시 중앙로62번길 18</p>
-  <p style="margin-top:8px;">매일 08:00 — 21:00 운영 (매장별 상이)</p>
-  <p style="margin-top:16px; color:#ccc;">본 페이지는 방문객 편의를 위해 제공됩니다.</p>
+  본 페이지는 방문객 편의를 위해 제공됩니다.<br>
+  © 제육이다 × 서귀포 매일올레시장
 </footer>
 
 </body>
