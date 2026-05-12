@@ -153,6 +153,60 @@
       margin-top: 10px;
     }
     footer strong { color: #e85d26; }
+
+    /* 새활용 배너 */
+    .eco-banner {
+      margin: 20px 16px 0;
+      background: linear-gradient(135deg, #1b4332, #2d6a4f);
+      border-radius: 16px;
+      padding: 20px;
+      color: white;
+    }
+    .eco-banner .eco-label {
+      display: inline-block;
+      background: #52b788;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+    .eco-banner h2 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+    .eco-banner .eco-sub { font-size: 12px; opacity: 0.8; margin-bottom: 14px; line-height: 1.5; }
+    .eco-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .eco-stat {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 10px 6px;
+      text-align: center;
+    }
+    .eco-stat .icon { font-size: 22px; display: block; margin-bottom: 4px; }
+    .eco-stat .val { font-size: 14px; font-weight: 800; display: block; }
+    .eco-stat .lbl { font-size: 10px; opacity: 0.75; display: block; margin-top: 2px; line-height: 1.3; }
+    .eco-note {
+      font-size: 11px;
+      opacity: 0.65;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .btn-green {
+      display: block;
+      text-align: center;
+      background: #52b788;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 11px;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
@@ -404,6 +458,32 @@
     </div>
 
   </div>
+</div>
+
+<!-- 새활용 배너 -->
+<div class="eco-banner">
+  <span class="eco-label">♻️ 새활용 프로젝트</span>
+  <h2>상생 보냉 장바구니</h2>
+  <p class="eco-sub">버려지는 폐플라스틱을 100% 재생원단(플라텍스)으로 만든<br>제주형 친환경 업사이클링 제품</p>
+  <div class="eco-stats">
+    <div class="eco-stat">
+      <span class="icon">🌿</span>
+      <span class="val">60%</span>
+      <span class="lbl">탄소 배출<br>저감</span>
+    </div>
+    <div class="eco-stat">
+      <span class="icon">♻️</span>
+      <span class="val">150g</span>
+      <span class="lbl">폐플라스틱<br>1개당 재활용</span>
+    </div>
+    <div class="eco-stat">
+      <span class="icon">🌲</span>
+      <span class="val">소나무</span>
+      <span class="lbl">1그루 효과<br>25회 사용 시</span>
+    </div>
+  </div>
+  <p class="eco-note">※ 탄소 저감 60% 기준: 일반 석유계 신소재 대비 / 소나무 1그루 연간 탄소흡수량 5.9kg (국립산림과학원, 2021) / 수치는 추정치이며 KCL 공인시험 진행 중</p>
+  <a href="https://www.google.com/maps/search/?api=1&query=제육이다+서귀포+서귀동291-11" target="_blank" class="btn-green">🛍️ 제육이다에서 만나보기</a>
 </div>
 
 <footer>
