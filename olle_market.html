@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>전세계가 사랑한 올레시장 맛집 순위</title>
+  <title>전세계가 사랑하는 올레시장 맛집</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Hiragino Sans', sans-serif;
       background: #f7f7f7;
       color: #1a1a1a;
       min-height: 100vh;
@@ -15,30 +15,45 @@
       margin: 0 auto;
     }
 
-    header {
-      background: #fff;
-      padding: 28px 20px 16px;
-      border-bottom: 1px solid #eee;
+    /* 언어 선택 */
+    .lang-bar {
+      background: #111;
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      padding: 8px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    header .location {
+    .lang-btn {
+      background: transparent;
+      border: 1px solid #444;
+      color: #aaa;
       font-size: 12px;
-      color: #999;
-      margin-bottom: 4px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    header h1 {
-      font-size: 22px;
-      font-weight: 900;
-      line-height: 1.3;
-      color: #111;
-    }
-    header h1 span { color: #e85d26; }
-    header .updated {
-      font-size: 11px;
-      color: #bbb;
-      margin-top: 8px;
+    .lang-btn.active {
+      background: #e85d26;
+      border-color: #e85d26;
+      color: white;
     }
 
-    /* 탭 */
+    header {
+      background: #fff;
+      padding: 24px 20px 14px;
+      border-bottom: 1px solid #eee;
+    }
+    header .location { font-size: 12px; color: #999; margin-bottom: 4px; }
+    header .by { font-size: 12px; color: #999; margin-bottom: 4px; }
+    header h1 { font-size: 21px; font-weight: 900; line-height: 1.3; color: #111; }
+    header h1 span { color: #e85d26; }
+    header .updated { font-size: 11px; color: #bbb; margin-top: 8px; }
+
     .tabs {
       background: #fff;
       display: flex;
@@ -54,12 +69,8 @@
       border-bottom: 2px solid transparent;
       cursor: pointer;
     }
-    .tab.active {
-      color: #e85d26;
-      border-bottom: 2px solid #e85d26;
-    }
+    .tab.active { color: #e85d26; border-bottom: 2px solid #e85d26; }
 
-    /* 순위 리스트 */
     .rank-list { background: #fff; }
 
     .rank-item {
@@ -71,68 +82,31 @@
       text-decoration: none;
       color: inherit;
     }
-    .rank-item:active { background: #fafafa; }
-
-    /* 1,2,3위 강조 */
     .rank-item.top1 { background: #fff9f6; }
     .rank-item.top2 { background: #fdfcfb; }
     .rank-item.top3 { background: #fdfcfb; }
 
-    .rank-num {
-      font-size: 16px;
-      font-weight: 900;
-      min-width: 28px;
-      text-align: center;
-      color: #ccc;
-    }
-    .rank-num.gold { color: #e85d26; font-size: 18px; }
-    .rank-num.silver { color: #888; font-size: 17px; }
+    .rank-num { font-size: 16px; font-weight: 900; min-width: 28px; text-align: center; color: #ccc; }
+    .rank-num.gold   { color: #e85d26; font-size: 18px; }
+    .rank-num.silver { color: #888;    font-size: 17px; }
     .rank-num.bronze { color: #b07d3a; font-size: 17px; }
 
-    .rank-emoji {
-      font-size: 30px;
-      min-width: 40px;
-      text-align: center;
-    }
-
+    .rank-emoji { font-size: 28px; min-width: 38px; text-align: center; }
     .rank-info { flex: 1; }
-    .rank-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: #111;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .rank-desc {
-      font-size: 12px;
-      color: #999;
-      margin-top: 3px;
-    }
+    .rank-name { font-size: 15px; font-weight: 700; color: #111; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .rank-desc { font-size: 12px; color: #999; margin-top: 3px; }
 
-    .rank-badge {
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 20px;
-      white-space: nowrap;
-    }
+    .rank-badge { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 20px; white-space: nowrap; }
     .badge-hot { background: #fff0ec; color: #e85d26; }
     .badge-tv  { background: #f0f4ff; color: #4466ee; }
     .badge-new { background: #f0fff4; color: #22aa55; }
 
-    .rank-change {
-      font-size: 12px;
-      font-weight: 700;
-      min-width: 32px;
-      text-align: right;
-    }
+    .rank-change { font-size: 12px; font-weight: 700; min-width: 32px; text-align: right; }
     .up   { color: #22aa55; }
     .down { color: #e84040; }
     .same { color: #ccc; }
     .new-entry { color: #4466ee; font-size: 10px; }
 
-    /* 제육이다 특별 카드 */
     .hero-row {
       margin: 12px 16px;
       background: linear-gradient(135deg, #e85d26, #c94b1a);
@@ -143,9 +117,8 @@
       gap: 14px;
       text-decoration: none;
     }
-    .hero-row .rank-num { color: rgba(255,255,255,0.6); font-size: 18px; }
     .hero-row .rank-name { color: #fff; font-size: 16px; }
-    .hero-row .rank-desc { color: rgba(255,255,255,0.7); }
+    .hero-row .rank-desc { color: rgba(255,255,255,0.75); }
     .hero-row .rank-change { color: rgba(255,255,255,0.8); }
 
     /* 새활용 배너 */
@@ -156,300 +129,229 @@
       padding: 18px;
       color: white;
     }
-    .eco-label {
-      display: inline-block;
-      background: #52b788;
-      color: white;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 20px;
-      margin-bottom: 10px;
-    }
+    .eco-label { display: inline-block; background: #52b788; color: white; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px; margin-bottom: 10px; }
     .eco-title { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
     .eco-sub { font-size: 11px; opacity: 0.75; margin-bottom: 14px; line-height: 1.5; }
-    .eco-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .eco-stat {
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 10px 4px;
-      text-align: center;
-    }
+    .eco-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+    .eco-stat { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 4px; text-align: center; }
     .eco-stat .icon { font-size: 20px; display: block; margin-bottom: 4px; }
     .eco-stat .val  { font-size: 13px; font-weight: 800; display: block; }
     .eco-stat .lbl  { font-size: 10px; opacity: 0.7; display: block; margin-top: 2px; line-height: 1.3; }
     .eco-note { font-size: 10px; opacity: 0.55; margin-bottom: 12px; line-height: 1.5; }
-    .btn-green {
-      display: block;
-      text-align: center;
-      background: #52b788;
-      color: white;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 10px;
-      border-radius: 10px;
-    }
+    .btn-green { display: block; text-align: center; background: #52b788; color: white; text-decoration: none; font-size: 13px; font-weight: 700; padding: 10px; border-radius: 10px; }
 
-    /* 시장 안내 */
-    .market-info {
-      margin: 16px;
-      background: #fff;
-      border-radius: 14px;
-      padding: 16px 18px;
-      border: 1px solid #eee;
-    }
+    .market-info { margin: 16px; background: #fff; border-radius: 14px; padding: 16px 18px; border: 1px solid #eee; }
     .market-info .mi-title { font-size: 14px; font-weight: 800; margin-bottom: 8px; color: #333; }
-    .market-info .mi-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 6px;
-    }
-    .btn-map {
-      display: block;
-      text-align: center;
-      background: #f5f5f5;
-      color: #333;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 10px;
-      border-radius: 10px;
-      margin-top: 12px;
-    }
+    .market-info .mi-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #666; margin-bottom: 6px; }
+    .btn-map { display: block; text-align: center; background: #f5f5f5; color: #333; text-decoration: none; font-size: 13px; font-weight: 700; padding: 10px; border-radius: 10px; margin-top: 12px; }
 
-    footer {
-      text-align: center;
-      padding: 24px 16px;
-      font-size: 11px;
-      color: #ccc;
-    }
+    footer { text-align: center; padding: 24px 16px; font-size: 11px; color: #ccc; }
   </style>
 </head>
 <body>
 
+<!-- 언어 선택 바 -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('ko')">🇰🇷 한국어</button>
+  <button class="lang-btn" onclick="setLang('en')">🇺🇸 EN</button>
+  <button class="lang-btn" onclick="setLang('zh')">🇨🇳 中文</button>
+  <button class="lang-btn" onclick="setLang('ja')">🇯🇵 日本語</button>
+</div>
+
 <header>
-  <div class="location">📍 제주 서귀포</div>
-  <div style="font-size:12px; color:#999; margin-bottom:4px;">제육이다가 소개하는</div>
-  <h1>전세계가 사랑하는<br><span>올레시장</span> 맛집</h1>
-  <div class="updated">📅 2026년 5월 14일 업데이트 · 방문객 인기도 순</div>
+  <div class="location">📍 Seogwipo, Jeju</div>
+  <div class="by" data-i18n="by"></div>
+  <h1 data-i18n="title"></h1>
+  <div class="updated" data-i18n="updated"></div>
 </header>
 
 <div class="tabs">
-  <div class="tab active">전체</div>
-  <div class="tab">먹거리</div>
-  <div class="tab">해산물</div>
-  <div class="tab">특산품</div>
+  <div class="tab active" data-i18n="tab_all"></div>
+  <div class="tab" data-i18n="tab_food"></div>
+  <div class="tab" data-i18n="tab_seafood"></div>
+  <div class="tab" data-i18n="tab_specialty"></div>
 </div>
 
 <div class="rank-list">
 
-  <!-- 1위: 제육이다 (히어로) -->
+  <!-- 1위: 제육이다 -->
   <a href="https://www.google.com/maps/search/?api=1&query=제육이다+제주특별자치도+서귀포시+중앙로62번길+18" target="_blank" class="hero-row">
     <div class="rank-num gold">1</div>
     <div class="rank-emoji">🔥</div>
     <div class="rank-info">
-      <div class="rank-name" style="color:#fff;">제육이다</div>
-      <div class="rank-desc">직화 제육볶음 · 시장 대표 맛집</div>
+      <div class="rank-name">제육이다 JEYUKIDA</div>
+      <div class="rank-desc" data-i18n="r1_desc"></div>
     </div>
-    <div class="rank-change" style="color:rgba(255,255,255,0.7);">지도 →</div>
+    <div class="rank-change" style="color:rgba(255,255,255,0.8);">→</div>
   </a>
 
-  <!-- 2위 ~ -->
   <a href="https://www.google.com/maps/search/?api=1&query=꽁치김밥+서귀포+올레시장" target="_blank" class="rank-item top2">
-    <div class="rank-num silver">2</div>
-    <div class="rank-emoji">🍱</div>
+    <div class="rank-num silver">2</div><div class="rank-emoji">🍱</div>
     <div class="rank-info">
-      <div class="rank-name">꽁치김밥 <span class="rank-badge badge-hot">4대명물</span></div>
-      <div class="rank-desc">꽁치 한 마리 통째로 · 시장 상징</div>
+      <div class="rank-name"><span data-i18n="r2_name"></span> <span class="rank-badge badge-hot" data-i18n="badge_landmark"></span></div>
+      <div class="rank-desc" data-i18n="r2_desc"></div>
     </div>
     <div class="rank-change up">↑ 2</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=마농치킨+중앙통닭+서귀포+올레시장" target="_blank" class="rank-item top3">
-    <div class="rank-num bronze">3</div>
-    <div class="rank-emoji">🍗</div>
+    <div class="rank-num bronze">3</div><div class="rank-emoji">🍗</div>
     <div class="rank-info">
-      <div class="rank-name">마농치킨 <span class="rank-badge badge-tv">수요미식회</span></div>
-      <div class="rank-desc">마늘 후라이드 단일 메뉴</div>
+      <div class="rank-name"><span data-i18n="r3_name"></span> <span class="rank-badge badge-tv">TV</span></div>
+      <div class="rank-desc" data-i18n="r3_desc"></div>
     </div>
     <div class="rank-change same">—</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=할머니떡집+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">4</div>
-    <div class="rank-emoji">🍡</div>
+    <div class="rank-num">4</div><div class="rank-emoji">🍡</div>
     <div class="rank-info">
-      <div class="rank-name">할머니떡집 <span class="rank-badge badge-tv">VJ특공대</span></div>
-      <div class="rank-desc">감귤모찌 · 오메기떡 원조</div>
+      <div class="rank-name"><span data-i18n="r4_name"></span> <span class="rank-badge badge-tv">TV</span></div>
+      <div class="rank-desc" data-i18n="r4_desc"></div>
     </div>
     <div class="rank-change down">↓ 2</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=흑돼지꼬치+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">5</div>
-    <div class="rank-emoji">🍖</div>
+    <div class="rank-num">5</div><div class="rank-emoji">🍖</div>
     <div class="rank-info">
-      <div class="rank-name">흑돼지꼬치</div>
-      <div class="rank-desc">줄 서는 명물 · 순한맛~아주죽을맛</div>
+      <div class="rank-name" data-i18n="r5_name"></div>
+      <div class="rank-desc" data-i18n="r5_desc"></div>
     </div>
     <div class="rank-change up">↑ 2</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=짱구분식+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">6</div>
-    <div class="rank-emoji">🍢</div>
+    <div class="rank-num">6</div><div class="rank-emoji">🍢</div>
     <div class="rank-info">
-      <div class="rank-name">짱구분식 <span class="rank-badge badge-hot">4대명물</span></div>
-      <div class="rank-desc">20년 전통 제주 모닥치기</div>
+      <div class="rank-name"><span data-i18n="r6_name"></span> <span class="rank-badge badge-hot" data-i18n="badge_landmark"></span></div>
+      <div class="rank-desc" data-i18n="r6_desc"></div>
     </div>
     <div class="rank-change down">↓ 1</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=우정회센터+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">7</div>
-    <div class="rank-emoji">🐟</div>
+    <div class="rank-num">7</div><div class="rank-emoji">🐟</div>
     <div class="rank-info">
-      <div class="rank-name">우정회센터</div>
-      <div class="rank-desc">꽁치김밥 원조 · 고등어회 · 딱새우</div>
+      <div class="rank-name" data-i18n="r7_name"></div>
+      <div class="rank-desc" data-i18n="r7_desc"></div>
     </div>
     <div class="rank-change same">—</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=뽈살집+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">8</div>
-    <div class="rank-emoji">🥩</div>
+    <div class="rank-num">8</div><div class="rank-emoji">🥩</div>
     <div class="rank-info">
-      <div class="rank-name">뽈살집</div>
-      <div class="rank-desc">흑돼지 특수부위 6종 모듬</div>
+      <div class="rank-name" data-i18n="r8_name"></div>
+      <div class="rank-desc" data-i18n="r8_desc"></div>
     </div>
     <div class="rank-change up">↑ 1</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=큰갯물횟집+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">9</div>
-    <div class="rank-emoji">🐡</div>
+    <div class="rank-num">9</div><div class="rank-emoji">🐡</div>
     <div class="rank-info">
-      <div class="rank-name">큰갯물횟집</div>
-      <div class="rank-desc">활어 · 한치회 · 갈치회 · 매운탕</div>
+      <div class="rank-name" data-i18n="r9_name"></div>
+      <div class="rank-desc" data-i18n="r9_desc"></div>
     </div>
     <div class="rank-change up">↑ 1</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=오가네전복설렁탕+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">10</div>
-    <div class="rank-emoji">🍲</div>
+    <div class="rank-num">10</div><div class="rank-emoji">🍲</div>
     <div class="rank-info">
-      <div class="rank-name">오가네전복설렁탕</div>
-      <div class="rank-desc">전복냉면 · 삼색만두 설렁탕</div>
+      <div class="rank-name" data-i18n="r10_name"></div>
+      <div class="rank-desc" data-i18n="r10_desc"></div>
     </div>
     <div class="rank-change down">↓ 1</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=88버거+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">11</div>
-    <div class="rank-emoji">🍔</div>
+    <div class="rank-num">11</div><div class="rank-emoji">🍔</div>
     <div class="rank-info">
-      <div class="rank-name">88버거</div>
-      <div class="rank-desc">제주 흑돼지 수제버거</div>
+      <div class="rank-name" data-i18n="r11_name"></div>
+      <div class="rank-desc" data-i18n="r11_desc"></div>
     </div>
     <div class="rank-change up">↑ 1</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=바다수산+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">12</div>
-    <div class="rank-emoji">🐠</div>
+    <div class="rank-num">12</div><div class="rank-emoji">🐠</div>
     <div class="rank-info">
-      <div class="rank-name">바다수산</div>
-      <div class="rank-desc">고등어회 · 옥돔 · 갈치</div>
+      <div class="rank-name" data-i18n="r12_name"></div>
+      <div class="rank-desc" data-i18n="r12_desc"></div>
     </div>
     <div class="rank-change same">—</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=한라봉아이스크림+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">13</div>
-    <div class="rank-emoji">🍊</div>
+    <div class="rank-num">13</div><div class="rank-emoji">🍊</div>
     <div class="rank-info">
-      <div class="rank-name">한라봉 아이스크림</div>
-      <div class="rank-desc">제주 생과일 아이스크림 · 필수 간식</div>
+      <div class="rank-name" data-i18n="r13_name"></div>
+      <div class="rank-desc" data-i18n="r13_desc"></div>
     </div>
     <div class="rank-change up">↑ 1</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=기흥어물+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">14</div>
-    <div class="rank-emoji">🐙</div>
+    <div class="rank-num">14</div><div class="rank-emoji">🐙</div>
     <div class="rank-info">
-      <div class="rank-name">기흥어물</div>
-      <div class="rank-desc">수산물 · 건어물 · 젓갈 전문</div>
+      <div class="rank-name" data-i18n="r14_name"></div>
+      <div class="rank-desc" data-i18n="r14_desc"></div>
     </div>
     <div class="rank-change down">↓ 1</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=제주과일주스+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">15</div>
-    <div class="rank-emoji">🥤</div>
+    <div class="rank-num">15</div><div class="rank-emoji">🥤</div>
     <div class="rank-info">
-      <div class="rank-name">제주 과일주스</div>
-      <div class="rank-desc">한라봉 · 레드향 · 딸기 100% 생착즙</div>
+      <div class="rank-name" data-i18n="r15_name"></div>
+      <div class="rank-desc" data-i18n="r15_desc"></div>
     </div>
     <div class="rank-change same">—</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=새로나분식+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">16</div>
-    <div class="rank-emoji">🥢</div>
+    <div class="rank-num">16</div><div class="rank-emoji">🥢</div>
     <div class="rank-info">
-      <div class="rank-name">새로나분식</div>
-      <div class="rank-desc">모닥치기 · 오뎅 · 꽈배기</div>
+      <div class="rank-name" data-i18n="r16_name"></div>
+      <div class="rank-desc" data-i18n="r16_desc"></div>
     </div>
     <div class="rank-change up">↑ 1</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=제성제과+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">17</div>
-    <div class="rank-emoji">🥐</div>
+    <div class="rank-num">17</div><div class="rank-emoji">🥐</div>
     <div class="rank-info">
-      <div class="rank-name">제성제과</div>
-      <div class="rank-desc">제주 로컬 베이커리 · 현지인 단골</div>
+      <div class="rank-name" data-i18n="r17_name"></div>
+      <div class="rank-desc" data-i18n="r17_desc"></div>
     </div>
     <div class="rank-change down">↓ 1</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=랍다즐겁다+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">18</div>
-    <div class="rank-emoji">😋</div>
+    <div class="rank-num">18</div><div class="rank-emoji">😋</div>
     <div class="rank-info">
-      <div class="rank-name">랍다즐겁다</div>
-      <div class="rank-desc">현지인 추천 · 제주 로컬 식당</div>
+      <div class="rank-name" data-i18n="r18_name"></div>
+      <div class="rank-desc" data-i18n="r18_desc"></div>
     </div>
     <div class="rank-change same">—</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=흑돼지김치말이+서귀포+올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">19</div>
-    <div class="rank-emoji">🌯</div>
+    <div class="rank-num">19</div><div class="rank-emoji">🌯</div>
     <div class="rank-info">
-      <div class="rank-name">제주흑돼지김치말이</div>
-      <div class="rank-desc">흑돼지 + 제주 김치 쌈 · 시장 간편 먹거리</div>
+      <div class="rank-name" data-i18n="r19_name"></div>
+      <div class="rank-desc" data-i18n="r19_desc"></div>
     </div>
     <div class="rank-change new-entry">NEW</div>
   </a>
 
   <a href="https://www.google.com/maps/search/?api=1&query=서귀포+매일올레시장" target="_blank" class="rank-item">
-    <div class="rank-num">20</div>
-    <div class="rank-emoji">🏪</div>
+    <div class="rank-num">20</div><div class="rank-emoji">🏪</div>
     <div class="rank-info">
-      <div class="rank-name">서귀포 매일올레시장</div>
-      <div class="rank-desc">710m 아케이드 · 365일 운영</div>
+      <div class="rank-name" data-i18n="r20_name"></div>
+      <div class="rank-desc" data-i18n="r20_desc"></div>
     </div>
     <div class="rank-change same">—</div>
   </a>
@@ -458,43 +360,225 @@
 
 <!-- 새활용 배너 -->
 <div class="eco-section">
-  <span class="eco-label">♻️ 제로제주 (플라스틱없는 제주만들기)</span>
-  <div class="eco-title">상생 보냉 장바구니</div>
-  <div class="eco-sub">버려지는 폐플라스틱을 100% 재생원단(플라텍스)으로 만든 제주형 친환경 업사이클링 제품</div>
+  <span class="eco-label" data-i18n="eco_label"></span>
+  <div class="eco-title" data-i18n="eco_title"></div>
+  <div class="eco-sub" data-i18n="eco_sub"></div>
   <div class="eco-stats">
     <div class="eco-stat">
       <span class="icon">🌿</span>
       <span class="val">60%</span>
-      <span class="lbl">탄소 배출<br>저감</span>
+      <span class="lbl" data-i18n="eco_stat1"></span>
     </div>
     <div class="eco-stat">
       <span class="icon">♻️</span>
       <span class="val">150g</span>
-      <span class="lbl">폐플라스틱<br>1개당 재활용</span>
+      <span class="lbl" data-i18n="eco_stat2"></span>
     </div>
     <div class="eco-stat">
       <span class="icon">🌲</span>
-      <span class="val">소나무</span>
-      <span class="lbl">1그루 효과<br>25회 사용 시</span>
+      <span class="val" data-i18n="eco_stat3_val"></span>
+      <span class="lbl" data-i18n="eco_stat3"></span>
     </div>
   </div>
-  <p class="eco-note">※ 탄소 저감 60% 기준: 일반 석유계 신소재 대비 / 소나무 1그루 연간 탄소흡수량 5.9kg (국립산림과학원, 2021) / 수치는 추정치이며 KCL 공인시험 진행 중</p>
-  <a href="https://www.google.com/maps/search/?api=1&query=제육이다+제주특별자치도+서귀포시+중앙로62번길+18" target="_blank" class="btn-green">🛍️ 제육이다에서 만나보기</a>
+  <p class="eco-note" data-i18n="eco_note"></p>
+  <a href="https://www.google.com/maps/search/?api=1&query=제육이다+제주특별자치도+서귀포시+중앙로62번길+18" target="_blank" class="btn-green" data-i18n="eco_btn"></a>
 </div>
 
 <!-- 시장 안내 -->
 <div class="market-info">
-  <div class="mi-title">🏪 서귀포 매일올레시장 안내</div>
-  <div class="mi-row">📍 제주특별자치도 서귀포시 중앙로62번길 18</div>
-  <div class="mi-row">🕐 매일 08:00 — 21:00 (매장별 상이)</div>
-  <div class="mi-row">🚗 공영주차장 완비 · 365일 운영</div>
-  <a href="https://www.google.com/maps/search/?api=1&query=서귀포+매일올레시장" target="_blank" class="btn-map">🗺️ 시장 위치 보기</a>
+  <div class="mi-title" data-i18n="market_title"></div>
+  <div class="mi-row">📍 <span data-i18n="market_addr"></span></div>
+  <div class="mi-row">🕐 <span data-i18n="market_hours"></span></div>
+  <div class="mi-row">🚗 <span data-i18n="market_park"></span></div>
+  <a href="https://www.google.com/maps/search/?api=1&query=서귀포+매일올레시장" target="_blank" class="btn-map" data-i18n="market_btn"></a>
 </div>
 
-<footer>
-  본 페이지는 방문객 편의를 위해 제공됩니다.<br>
-  © 제육이다 × 서귀포 매일올레시장
-</footer>
+<footer data-i18n="footer"></footer>
 
+<script>
+const i18n = {
+  ko: {
+    by: '제육이다가 소개하는',
+    title: '전세계가 사랑하는<br><span style="color:#e85d26">올레시장</span> 맛집',
+    updated: '📅 2026년 5월 14일 업데이트 · 방문객 인기도 순',
+    tab_all: '전체', tab_food: '먹거리', tab_seafood: '해산물', tab_specialty: '특산품',
+    badge_landmark: '4대명물',
+    r1_desc: '직화 제육볶음 · 시장 대표 맛집',
+    r2_name: '꽁치김밥', r2_desc: '꽁치 한 마리 통째로 · 시장 상징',
+    r3_name: '마농치킨 (중앙통닭)', r3_desc: '마늘 후라이드 단일 메뉴',
+    r4_name: '할머니떡집', r4_desc: '감귤모찌 · 오메기떡 원조',
+    r5_name: '흑돼지꼬치', r5_desc: '줄 서는 명물 · 순한맛~아주죽을맛',
+    r6_name: '짱구분식', r6_desc: '20년 전통 제주 모닥치기',
+    r7_name: '우정회센터', r7_desc: '꽁치김밥 원조 · 고등어회 · 딱새우',
+    r8_name: '뽈살집', r8_desc: '흑돼지 특수부위 6종 모듬',
+    r9_name: '큰갯물횟집', r9_desc: '활어 · 한치회 · 갈치회 · 매운탕',
+    r10_name: '오가네전복설렁탕', r10_desc: '전복냉면 · 삼색만두 설렁탕',
+    r11_name: '88버거', r11_desc: '제주 흑돼지 수제버거',
+    r12_name: '바다수산', r12_desc: '고등어회 · 옥돔 · 갈치',
+    r13_name: '한라봉 아이스크림', r13_desc: '제주 생과일 아이스크림 · 필수 간식',
+    r14_name: '기흥어물', r14_desc: '수산물 · 건어물 · 젓갈 전문',
+    r15_name: '제주 과일주스', r15_desc: '한라봉 · 레드향 · 딸기 100% 생착즙',
+    r16_name: '새로나분식', r16_desc: '모닥치기 · 오뎅 · 꽈배기',
+    r17_name: '제성제과', r17_desc: '제주 로컬 베이커리 · 현지인 단골',
+    r18_name: '랍다즐겁다', r18_desc: '현지인 추천 · 제주 로컬 식당',
+    r19_name: '제주흑돼지김치말이', r19_desc: '흑돼지 + 제주 김치 쌈',
+    r20_name: '서귀포 매일올레시장', r20_desc: '710m 아케이드 · 365일 운영',
+    eco_label: '♻️ 제로제주 (플라스틱없는 제주만들기)',
+    eco_title: '상생 보냉 장바구니',
+    eco_sub: '버려지는 폐플라스틱을 100% 재생원단으로 만든 제주형 친환경 업사이클링 제품',
+    eco_stat1: '탄소 배출\n저감', eco_stat2: '폐플라스틱\n1개당 재활용',
+    eco_stat3_val: '소나무', eco_stat3: '1그루 효과\n25회 사용 시',
+    eco_note: '※ 탄소 저감 60% 기준: 일반 석유계 신소재 대비 / 소나무 1그루 연간 탄소흡수량 5.9kg (국립산림과학원, 2021) / KCL 공인시험 진행 중',
+    eco_btn: '🛍️ 제육이다에서 만나보기',
+    market_title: '🏪 서귀포 매일올레시장 안내',
+    market_addr: '제주특별자치도 서귀포시 중앙로62번길 18',
+    market_hours: '매일 08:00 — 21:00 (매장별 상이)',
+    market_park: '공영주차장 완비 · 365일 운영',
+    market_btn: '🗺️ 시장 위치 보기',
+    footer: '본 페이지는 방문객 편의를 위해 제공됩니다.\n© 제육이다 × 서귀포 매일올레시장'
+  },
+  en: {
+    by: 'Introduced by JEYUKIDA',
+    title: 'Best Restaurants at<br><span style="color:#e85d26">Olle Market</span> Loved Worldwide',
+    updated: '📅 Updated May 14, 2026 · Ranked by visitor popularity',
+    tab_all: 'All', tab_food: 'Food', tab_seafood: 'Seafood', tab_specialty: 'Specialty',
+    badge_landmark: 'Landmark',
+    r1_desc: 'Grilled Spicy Pork · Market\'s #1 Must-Visit',
+    r2_name: 'Saury Gimbap', r2_desc: 'Whole saury fish in a roll · Market symbol',
+    r3_name: 'Manong Chicken', r3_desc: 'Garlic fried chicken · One menu only',
+    r4_name: 'Grandma\'s Rice Cake', r4_desc: 'Tangerine Mochi · Omegi-tteok',
+    r5_name: 'Black Pork Skewer', r5_desc: 'Queue-worthy · Mild to Extreme spicy',
+    r6_name: 'Jjanggu Snack Bar', r6_desc: '20yr tradition · Jeju Modakchigi',
+    r7_name: 'Woojung Seafood', r7_desc: 'Saury gimbap origin · Mackerel · Shrimp',
+    r8_name: 'Bbolsal Restaurant', r8_desc: '6 special cuts of Jeju black pork',
+    r9_name: 'Keun Gaetmul Hoetjip', r9_desc: 'Live fish · Hairtail · Stew',
+    r10_name: 'Ogane Abalone Seolleongtang', r10_desc: 'Abalone noodle · Dumplings',
+    r11_name: '88 Burger', r11_desc: 'Jeju black pork smash burger',
+    r12_name: 'Bada Fishmarket', r12_desc: 'Mackerel · Rockfish · Hairtail',
+    r13_name: 'Hallabong Ice Cream', r13_desc: 'Fresh Jeju citrus ice cream · Must-eat',
+    r14_name: 'Giheung Seafood', r14_desc: 'Dried fish · Salted seafood',
+    r15_name: 'Jeju Fruit Juice', r15_desc: 'Hallabong · Strawberry · 100% fresh',
+    r16_name: 'Saerona Snack Bar', r16_desc: 'Modakchigi · Fish cake · Twisted donuts',
+    r17_name: 'Jesung Bakery', r17_desc: 'Local Jeju bakery · Locals\' favourite',
+    r18_name: 'Lapda Jeulgeobda', r18_desc: 'Locals\' pick · Jeju comfort food',
+    r19_name: 'Black Pork Kimchi Roll', r19_desc: 'Black pork + Jeju kimchi wrap',
+    r20_name: 'Seogwipo Maeil Olle Market', r20_desc: '710m arcade · Open 365 days',
+    eco_label: '♻️ Zero Jeju · Plastic-Free Jeju',
+    eco_title: 'Eco Cooler Bag',
+    eco_sub: '100% upcycled plastic fabric — Jeju\'s sustainable lifestyle product',
+    eco_stat1: 'Carbon\nReduction', eco_stat2: 'Plastic\nper bag',
+    eco_stat3_val: '🌲 Tree', eco_stat3: '= 25 uses\n1 pine tree/yr',
+    eco_note: '※ 60% carbon reduction vs virgin petroleum material / 1 pine tree absorbs 5.9kg CO₂/yr (Korea Forest Research, 2021) / KCL certification in progress',
+    eco_btn: '🛍️ Find it at JEYUKIDA',
+    market_title: '🏪 Seogwipo Maeil Olle Market',
+    market_addr: '18, Jungang-ro 62beon-gil, Seogwipo-si, Jeju',
+    market_hours: 'Daily 08:00 — 21:00 (varies by store)',
+    market_park: 'Public parking available · Open 365 days',
+    market_btn: '🗺️ Get Directions',
+    footer: 'This page is provided for visitor convenience.\n© JEYUKIDA × Seogwipo Maeil Olle Market'
+  },
+  zh: {
+    by: '由 제육이다 (JEYUKIDA) 推荐',
+    title: '全世界都爱的<br><span style="color:#e85d26">奥勒市场</span>美食排行',
+    updated: '📅 2026年5月14日更新 · 按游客人气排序',
+    tab_all: '全部', tab_food: '美食', tab_seafood: '海鲜', tab_specialty: '特产',
+    badge_landmark: '四大名物',
+    r1_desc: '直火炒猪肉盖饭 · 市场No.1必吃',
+    r2_name: '秋刀鱼紫菜包饭', r2_desc: '整条秋刀鱼入卷 · 市场招牌',
+    r3_name: '大蒜炸鸡 (中央通닭)', r3_desc: '济州大蒜原味炸鸡 · 单一菜单',
+    r4_name: '奶奶年糕店', r4_desc: '柑橘麻薯 · 오메기떡 元祖',
+    r5_name: '黑猪肉串', r5_desc: '排队名物 · 微辣~极辣可选',
+    r6_name: '짱구小吃店', r6_desc: '20年传统济州모닥치기拼盘',
+    r7_name: '友情生鱼片中心', r7_desc: '秋刀鱼紫菜包饭起源 · 鲭鱼 · 鲜虾',
+    r8_name: '猪颊肉店', r8_desc: '黑猪特殊部位6种拼盘',
+    r9_name: '大海生鱼片店', r9_desc: '活鱼 · 枪乌贼 · 带鱼 · 汤锅',
+    r10_name: '오가네鲍鱼雪浓汤', r10_desc: '鲍鱼冷面 · 三色饺子雪浓汤',
+    r11_name: '88汉堡', r11_desc: '济州黑猪手工汉堡',
+    r12_name: '海洋水产', r12_desc: '鲭鱼 · 红鳂 · 带鱼',
+    r13_name: '汉拿峰冰淇淋', r13_desc: '济州生果冰淇淋 · 必吃小吃',
+    r14_name: '기흥海产品', r14_desc: '干货 · 腌制海鲜专卖',
+    r15_name: '济州果汁', r15_desc: '汉拿峰 · 草莓 100% 鲜榨',
+    r16_name: '새로나小吃', r16_desc: '拼盘 · 鱼糕 · 麻花',
+    r17_name: '제성面包店', r17_desc: '济州本地面包店 · 本地人常客',
+    r18_name: '好吃开心', r18_desc: '本地人推荐 · 济州家常料理',
+    r19_name: '黑猪泡菜卷', r19_desc: '黑猪肉 + 济州泡菜卷',
+    r20_name: '西归浦每日奥勒市场', r20_desc: '710m 拱廊商场 · 365天营业',
+    eco_label: '♻️ 零废弃济州 · 无塑料济州计划',
+    eco_title: '共生保冷购物袋',
+    eco_sub: '100%回收废塑料再生面料 · 济州可持续环保升级再造产品',
+    eco_stat1: '碳排放\n减少', eco_stat2: '废塑料\n每个再利用',
+    eco_stat3_val: '🌲 松树', eco_stat3: '=使用25次\n1棵松树/年',
+    eco_note: '※ 减碳60%：与石油基新材料相比 / 1棵松树年吸收CO₂ 5.9kg（韩国林业研究院，2021）/ KCL认证进行中',
+    eco_btn: '🛍️ 在JEYUKIDA购买',
+    market_title: '🏪 西归浦每日奥勒市场',
+    market_addr: '济州特别自治道 西归浦市 中央路62号街 18',
+    market_hours: '每天 08:00 — 21:00（各店不同）',
+    market_park: '公共停车场完备 · 365天运营',
+    market_btn: '🗺️ 查看市场位置',
+    footer: '本页面为方便游客提供。\n© JEYUKIDA × 西归浦每日奥勒市场'
+  },
+  ja: {
+    by: 'JEYUKIDAがご紹介する',
+    title: '世界が愛する<br><span style="color:#e85d26">オルレ市場</span>グルメランキング',
+    updated: '📅 2026年5月14日更新 · 訪問者人気順',
+    tab_all: '全体', tab_food: 'グルメ', tab_seafood: '海鮮', tab_specialty: '特産品',
+    badge_landmark: '四大名物',
+    r1_desc: '直火チェユクポックム · 市場No.1必食',
+    r2_name: 'サンマキンパプ', r2_desc: 'サンマ丸ごと一匹入り · 市場の象徴',
+    r3_name: 'マノンチキン (中央통닭)', r3_desc: 'ニンニク揚げ鶏 · 単一メニュー',
+    r4_name: 'おばあちゃんの餅屋', r4_desc: 'みかんモチ · オメギ餅の元祖',
+    r5_name: '黒豚串焼き', r5_desc: '行列名物 · 辛さ選べます',
+    r6_name: 'チャングウ軽食', r6_desc: '20年伝統 済州모닥치기盛り合わせ',
+    r7_name: 'ウジョン海鮮センター', r7_desc: 'サンマキンパプ発祥 · 鯖刺身 · 手長エビ',
+    r8_name: 'ポルサル屋', r8_desc: '黒豚希少部位6種盛り合わせ',
+    r9_name: 'クンゲンムル刺身店', r9_desc: '活魚 · アオリイカ · タチウオ · チゲ',
+    r10_name: 'オガネアワビソルロンタン', r10_desc: 'アワビ冷麺 · 三色餃子スープ',
+    r11_name: '88バーガー', r11_desc: '済州黒豚手作りバーガー',
+    r12_name: 'パダ水産', r12_desc: '鯖 · アカムツ · タチウオ',
+    r13_name: 'ハルラボンアイスクリーム', r13_desc: '済州生果物アイス · 必食スイーツ',
+    r14_name: 'キフン干物店', r14_desc: '水産物 · 干物 · 塩辛専門',
+    r15_name: '済州フルーツジュース', r15_desc: 'ハルラボン · いちご 100%生搾り',
+    r16_name: 'セロナ軽食', r16_desc: '盛り合わせ · おでん · 揚げパン',
+    r17_name: 'ジェソンベーカリー', r17_desc: '済州ローカルパン屋 · 地元民御用達',
+    r18_name: 'ラプタ楽しい', r18_desc: '地元民おすすめ · 済州家庭料理',
+    r19_name: '黒豚キムチ巻き', r19_desc: '黒豚 + 済州キムチ包み',
+    r20_name: 'ソグィポ毎日オルレ市場', r20_desc: '710mアーケード · 365日営業',
+    eco_label: '♻️ ゼロ済州 · プラスチックのない済州づくり',
+    eco_title: '共生保冷バッグ',
+    eco_sub: '廃プラスチック100%リサイクル素材使用 · 済州型エコアップサイクル製品',
+    eco_stat1: '炭素排出\n削減', eco_stat2: '廃プラ\n1個あたり',
+    eco_stat3_val: '🌲 松の木', eco_stat3: '=25回使用で\n1本分/年',
+    eco_note: '※ 炭素60%削減：石油系新素材との比較 / 松の木1本の年間CO₂吸収量5.9kg（韓国林業研究院、2021）/ KCL公認試験進行中',
+    eco_btn: '🛍️ JEYUKIDAで購入',
+    market_title: '🏪 ソグィポ毎日オルレ市場',
+    market_addr: '済州特別自治道 西帰浦市 中央路62番街 18',
+    market_hours: '毎日 08:00 — 21:00（店舗により異なる）',
+    market_park: '公共駐車場完備 · 365日営業',
+    market_btn: '🗺️ 地図を見る',
+    footer: 'このページは訪問者の便宜のために提供されています。\n© JEYUKIDA × ソグィポ毎日オルレ市場'
+  }
+};
+
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`[onclick="setLang('${lang}')"]`).classList.add('active');
+
+  const t = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) {
+      el.innerHTML = t[key];
+    }
+  });
+  document.documentElement.lang = lang;
+}
+
+// 기본 언어 설정
+setLang('ko');
+
+// 브라우저 언어 자동 감지
+const browserLang = navigator.language.slice(0,2);
+if (['en','zh','ja'].includes(browserLang)) setLang(browserLang);
+</script>
 </body>
 </html>
